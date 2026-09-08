@@ -50,6 +50,24 @@ img {
   display: block;
 }
 
+/* ============================================================
+   ステージ
+   完成デザインの設計幅 1080px でレイアウトし、画面幅に合わせて
+   全体を等倍スケールする。JS が無効／zoom 非対応の場合は
+   --stage-scale が 1 のまま＝1080px 中央寄せにフォールバックする。
+   ============================================================ */
+.stage {
+  width: 100%;
+}
+
+@media (min-width: 769px) {
+  .stage {
+    width: 1080px;
+    margin-inline: auto;
+    zoom: var(--stage-scale, 1);
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;

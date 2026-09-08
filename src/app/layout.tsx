@@ -36,12 +36,31 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+/**
+ * 完成デザインは 1080px 幅で作られているため、レイアウトは常に 1080px で組み、
+ * 画面幅に合わせて全体を等倍で拡大／縮小する（zoom）。
+ * これにより、どの画面幅でも完成デザインと同じ比率・同じ構図で表示される。
+ * スクロールバーを除いた実寸が必要なので clientWidth を使う。
+ */
+const STAGE_SCALE = `(function(){
+  var d = document.documentElement;
+  function set(){
+    var w = d.clientWidth;
+    d.style.setProperty('--stage-scale', w > 768 ? String(Math.min(w / 1080, 1.8)) : '1');
+  }
+  set();
+  addEventListener('resize', set, { passive: true });
+})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ja" className={notoSansJP.variable}>
-      <body>{children}</body>
+      <body>
+        <script dangerouslySetInnerHTML={{ __html: STAGE_SCALE }} />
+        <div className="stage">{children}</div>
+      </body>
     </html>
   );
 }
