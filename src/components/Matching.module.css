@@ -1,7 +1,7 @@
 .section {
   position: relative;
   overflow: hidden;
-  padding: 199px 0 79px;
+  padding: 141.4px 0 79px;
   background: var(--white);
 }
 
@@ -43,36 +43,42 @@
 
 .cols {
   display: flex;
-  margin-top: 52px;
+  margin-top: 48px;
+  /* 完成デザインでは2カラムがコンテナ左端よりさらに内側から始まる */
+  margin-left: 92px;
 }
 
 .col {
-  width: 421px;
-  padding-left: 20px;
-  border-left: 8px solid var(--orange);
+  width: 400px;
+  padding: 16.5px 0 0 21px;
+  border-left: 6.5px solid var(--orange);
 }
 
-.col:last-child { margin-left: 22px; }
+/* 完成デザインでは右カラムのほうが本文の開始位置が少し高い */
+.col:last-child { margin-left: 23.5px; padding: 11.5px 0 2.5px 24.5px; }
 
 .colTitle {
-  font-size: 20px;
+  font-size: 22.5px;
   font-weight: 700;
   line-height: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.037em;
 }
 
+/* 完成デザインでは右カラムの見出しだけひとまわり小さい */
+.col:last-child .colTitle { font-size: 19px; }
+
 .items {
-  margin-top: 30px;
+  margin-top: 25px;
   font-size: 15px;
   font-weight: 500;
-  line-height: 2.07;
+  line-height: 1.8;
   letter-spacing: 0.01em;
 }
 
 .itemsSmall {
-  font-size: 13.5px;
-  line-height: 1.78;
-  margin-top: 24px;
+  font-size: 13.8px;
+  line-height: 1.848;
+  margin-top: 25px;
 }
 
 /* ---------------- SP ---------------- */
@@ -92,8 +98,11 @@
     margin-top: 34px;
   }
 
-  .col { width: 100%; padding-left: 14px; border-left-width: 6px; }
+  .cols { margin-left: 0; }
+  .col,
+  .col:last-child { width: 100%; padding: 0 0 0 14px; border-left-width: 6px; }
   .col:last-child { margin-left: 0; }
+  .col:last-child .colTitle { font-size: 17px; }
 
   .colTitle { font-size: 17px; }
 

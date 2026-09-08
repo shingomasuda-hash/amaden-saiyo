@@ -7,28 +7,34 @@
   max-width: 968px;
   margin: 0 auto;
   background: var(--white);
-  padding: 59px 45px 50px;
+  padding: 54.5px 45px 50px;
 }
 
 .heading {
+  position: relative;
+  left: -43.5px;
   text-align: center;
-  font-size: 46px;
+  font-size: 66px;
   font-weight: 900;
   line-height: 1;
   letter-spacing: 0.03em;
 }
 
+/* 完成デザインでは「働く」だけ小さく、引用符は大きい */
+.lead { font-size: 36px; }
+
 .q {
   font-family: Georgia, "Times New Roman", serif;
   color: var(--red);
-  font-size: 46px;
+  font-size: 98px;
+  line-height: 0;
   margin: 0 2px;
-  vertical-align: 0.02em;
+  vertical-align: -8px;
 }
 
 .cards {
   position: relative;
-  margin-top: 71px;
+  margin-top: 58.5px;
   height: 766px;
 }
 
@@ -51,6 +57,7 @@
   position: absolute;
   left: 18px;
   top: 22px;
+  font-family: var(--font-num);
   font-size: 52px;
   font-weight: 900;
   line-height: 1;
@@ -95,8 +102,9 @@
 
   .box { padding: 44px 20px 119px; max-width: none; }
 
-  .heading { font-size: 30px; }
-  .q { font-size: 30px; }
+  .heading { font-size: 42px; }
+  .lead { font-size: 22px; }
+  .q { font-size: 66px; }
 
   .cards {
     position: static;
@@ -105,11 +113,19 @@
   }
 
   .card {
-    position: static;
+    /* 数字とキャプションはカード基準の絶対配置なので relative のままにする */
+    position: relative;
+    left: auto;
+    top: auto;
     width: 100%;
     height: auto;
     margin-bottom: 29.4px;
   }
+
+  .card:nth-child(1),
+  .card:nth-child(2),
+  .card:nth-child(3),
+  .card:nth-child(4) { left: auto; top: auto; }
 
   .pc { display: none; }
   .sp { display: block; width: 100%; height: auto; }

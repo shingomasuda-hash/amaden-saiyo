@@ -33,7 +33,7 @@
 .itv { position: relative; }
 
 .itv1 { margin-top: -70px; }
-.itv2 { margin-top: 1px; }
+.itv2 { margin-top: 49.6px; }
 
 /* --- 写真 --- */
 .photo1,
@@ -116,28 +116,28 @@
   margin: 30px 56px 0;
   font-size: 15px;
   font-weight: 500;
-  line-height: 1.87;
+  line-height: 1.7;
   letter-spacing: 0.01em;
 }
 
-.itv1 .text { margin-top: 43px; }
-.itv2 .text { margin-top: 105px; }
+.itv1 .text { margin-top: 9.5px; }
+.itv2 .text { margin-top: 109.5px; }
 
 .moreBtn {
   display: flex;
   align-items: center;
   width: 268px;
   height: 49px;
-  margin: 83px auto 0;
+  margin: 63px auto 0;
   padding: 0 14px 0 16px;
   border: 1px solid var(--red);
   color: var(--red);
-  font-size: 15px;
+  font-size: 14.2px;
   font-weight: 700;
   letter-spacing: 0.01em;
 }
 
-.moreBtn > span:first-child { flex: 1; }
+.moreBtn > span:first-child { flex: 1; white-space: nowrap; }
 
 .divider {
   width: 1px;

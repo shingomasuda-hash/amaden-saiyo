@@ -131,7 +131,7 @@ export default function EntryForm() {
               </div>
             ))}
 
-            <div className={s.row}>
+            <div className={`${s.row} ${s.noteRow}`}>
               <div className={s.labelWrap}>
                 <span className={s.label}>備考</span>
                 <span className={s.req}>必須</span>

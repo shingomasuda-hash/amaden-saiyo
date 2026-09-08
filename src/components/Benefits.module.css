@@ -58,23 +58,28 @@
 .tabWide {
   height: 95px;
   width: 432px;
-  font-size: 62px;
+  /* 完成デザインではタブの文字は中央ではなく左寄せ */
+  justify-content: flex-start;
+  padding-left: 64.5px;
+  font-size: 65px;
   font-weight: 900;
   letter-spacing: 0.03em;
 }
 
-.card:nth-child(3) .tabWide { width: 472px; height: 98px; }
+.card:nth-child(3) .tabWide { width: 472px; height: 98px; padding-left: 66px; }
 
 .tabNarrow {
   height: 47px;
   width: 304px;
-  font-size: 26px;
+  justify-content: flex-start;
+  padding-left: 49.5px;
+  font-size: 31px;
   font-weight: 900;
   letter-spacing: 0.02em;
   top: 0;
 }
 
-.card:nth-child(4) .tabNarrow { width: 209px; }
+.card:nth-child(4) .tabNarrow { width: 209px; padding-left: 49px; font-size: 28px; }
 
 .cardBody {
   border: 7px solid var(--red);

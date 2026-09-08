@@ -13,7 +13,7 @@ export default function Attraction() {
     <section className={s.section}>
       <div className={s.box}>
         <h2 className={s.heading}>
-          働く
+          <span className={s.lead}>働く</span>
           <span className={s.q} aria-hidden="true">“</span>
           魅力
           <span className={s.q} aria-hidden="true">”</span>

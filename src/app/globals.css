@@ -16,6 +16,9 @@
 
   /* --- レイアウト --- */
   --content-max: 1200px;
+
+  /* 単独の欧文数字用（「1」に下の横棒が無い） */
+  --font-num: var(--font-roboto), Roboto, Arial, sans-serif;
 }
 
 *,
@@ -40,8 +43,8 @@ body {
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
-  /* 完成デザインは約物を詰めた組み（プロポーショナルメトリクス）*/
-  font-feature-settings: "palt" 1;
+  /* 完成デザインは約物を詰めないベタ組み */
+  font-feature-settings: normal;
 }
 
 img {
@@ -78,14 +81,9 @@ button {
   cursor: pointer;
 }
 
-h1, h2, h3, h4, p, ul, ol, figure {
+h1, h2, h3, h4, p, ul, ol, figure, dl, dt, dd {
   margin: 0;
   padding: 0;
-}
-
-/* 大きな見出しはベタ組み（完成デザインの字送りに合わせる） */
-h1, h2, h3 {
-  font-feature-settings: normal;
 }
 
 ul, ol {

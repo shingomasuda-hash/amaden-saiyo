@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_JP } from "next/font/google";
+import { Noto_Sans_JP, Roboto } from "next/font/google";
 import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({
@@ -7,6 +7,19 @@ const notoSansJP = Noto_Sans_JP({
   weight: ["400", "500", "700", "900"],
   display: "swap",
   variable: "--font-noto-sans-jp",
+});
+
+/**
+ * 完成デザインでは「01」「02」のような単独の欧文数字だけ、
+ * 和文フォントではなく欧文フォント（「1」に下の横棒が無い形）が
+ * 使われている。日本語混じりの「1年目」などは和文フォントのまま。
+ * 完成画像の字形と実測比較（IoU）した結果、Roboto Black が最も一致した。
+ */
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["700", "900"],
+  display: "swap",
+  variable: "--font-roboto",
 });
 
 const SITE_NAME = "株式会社Amaden（尼崎電機製作所）";
@@ -56,7 +69,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ja" className={notoSansJP.variable}>
+    <html lang="ja" className={`${notoSansJP.variable} ${roboto.variable}`}>
       <body>
         <script dangerouslySetInnerHTML={{ __html: STAGE_SCALE }} />
         <div className="stage">{children}</div>

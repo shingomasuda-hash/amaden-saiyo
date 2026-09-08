@@ -7,34 +7,34 @@
   max-width: 750px;
   margin: 0 auto;
   background: var(--white);
-  padding: 85px 0 46px;
+  padding: 81.8px 0 46px;
 }
 
 .red { color: var(--red); }
 
 .heading {
   text-align: center;
-  font-size: 38px;
+  font-size: 36px;
   font-weight: 900;
   line-height: 1;
   letter-spacing: 0.02em;
 }
 
 .lead {
-  margin-top: 35px;
+  margin-top: 26px;
   text-align: center;
   font-size: 15px;
   font-weight: 500;
-  line-height: 1.73;
+  line-height: 1.6;
   letter-spacing: 0.01em;
 }
 
-.table { margin-top: 81px; }
+.table { margin-top: 58.5px; }
 
 .row {
   display: flex;
   align-items: flex-start;
-  padding: 28px 0;
+  padding: 29.5px 0;
   border-bottom: 1px dotted #f19aa2;
   margin: 0 34px;
 }
@@ -48,7 +48,7 @@
   color: var(--red);
   font-size: 15px;
   font-weight: 700;
-  line-height: 1.6;
+  line-height: 1.8;
   letter-spacing: 0.01em;
 }
 
@@ -56,10 +56,11 @@
 
 .value {
   flex: 1;
+  margin-left: 10px;
   padding-right: 10px;
   font-size: 15px;
   font-weight: 500;
-  line-height: 1.72;
+  line-height: 1.8;
   letter-spacing: 0.01em;
 }
 

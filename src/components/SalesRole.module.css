@@ -18,8 +18,9 @@
 
 .list {
   display: flex;
-  gap: 8px;
-  margin-top: 68px;
+  gap: 4px;
+  /* 完成デザインではカラム列がコンテナより 3px 右から始まる */
+  margin: 121.2px 0 0 3px;
 }
 
 .item {
@@ -28,16 +29,22 @@
   flex: none;
 }
 
+/* 数字は写真の左上に少し重なる。写真より前面に出す必要がある */
 .no {
   position: absolute;
-  left: 3px;
-  top: -58px;
-  font-size: 66px;
+  left: -0.5px;
+  top: -51.7px;
+  z-index: 2;
+  font-family: var(--font-num);
+  font-size: 89px;
   font-weight: 900;
   line-height: 1;
   color: var(--orange);
-  letter-spacing: 0.01em;
+  letter-spacing: -0.03em;
 }
+
+.item:nth-child(2) .no { left: 7.5px; }
+.item:nth-child(3) .no { left: 16px; }
 
 .visual {
   width: 320px;
@@ -48,23 +55,26 @@
 }
 
 .visual img { width: 100%; height: 100%; object-fit: cover; }
-.item:nth-child(2) .visual img { object-fit: contain; width: 317px; height: 225px; }
+.item:nth-child(2) .visual img { object-fit: contain; width: 331.5px; height: 234.5px; flex: none; }
+/* 中央カラムだけ、完成デザインでは本文がカラム左端より少し内側から始まる */
+.item:nth-child(2) .title,
+.item:nth-child(2) .body { margin-left: 8.5px; }
 
 .sp { display: none; }
 
 .title {
-  margin-top: 15px;
-  font-size: 19px;
+  margin-top: 7px;
+  font-size: 23px;
   font-weight: 900;
   line-height: 1.2;
   letter-spacing: 0.01em;
 }
 
 .body {
-  margin-top: 8px;
-  font-size: 13px;
+  margin-top: 7px;
+  font-size: 15px;
   font-weight: 500;
-  line-height: 1.62;
+  line-height: 18px;
   letter-spacing: 0.01em;
 }
 
@@ -78,19 +88,24 @@
 
   .list {
     flex-direction: column;
-    gap: 44px;
-    margin-top: 46px;
+    gap: 74px;
+    margin: 46px 0 0;
   }
 
   .item { width: 100%; }
 
-  .no { top: -46px; left: 0; font-size: 52px; }
+  .no,
+  .item:nth-child(2) .no,
+  .item:nth-child(3) .no { top: -43.7px; left: -2.7px; font-size: 69px; }
 
   .visual { width: 100%; height: auto; display: block; }
   .pc { display: none; }
   .sp { display: block; width: 100%; height: auto; }
   .item:nth-child(2) .visual .sp { object-fit: contain; width: 100%; height: auto; }
 
-  .title { margin-top: 12px; font-size: 17px; }
-  .body { font-size: 14px; }
+  .item:nth-child(2) .title,
+  .item:nth-child(2) .body { margin-left: 0; }
+
+  .title { margin-top: 10px; font-size: 15.5px; }
+  .body { font-size: 14.4px; line-height: 21.4px; }
 }
