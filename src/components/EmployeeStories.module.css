@@ -208,13 +208,13 @@
   .text {
     margin: 22px 22px 0 !important;
     font-size: 15px;
-    line-height: 1.82;
+    line-height: 1.6;
   }
 
   .moreBtn {
     width: 327px;
     height: 64.7px;
-    margin-top: 45px;
+    margin-top: 48px;
     font-size: 15px;
   }
 }

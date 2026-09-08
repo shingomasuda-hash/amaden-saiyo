@@ -26,7 +26,9 @@ export default function Matching() {
 
       <div className={s.inner}>
         <h2 className={s.heading}>
-          ミスマッチを防ぐため、<span className={s.red}>正直にお伝え</span>します。
+          ミスマッチを防ぐため、
+          <br className={s.spBr} />
+          <span className={s.red}>正直にお伝え</span>します。
         </h2>
 
         <div className={s.cols}>

@@ -33,9 +33,11 @@
 
 .red { color: var(--red); }
 
+.spBr { display: none; }
+
 .heading {
   text-align: center;
-  font-size: 38px;
+  font-size: 37px;
   font-weight: 900;
   line-height: 1;
   letter-spacing: 0.02em;
@@ -83,12 +85,14 @@
 
 /* ---------------- SP ---------------- */
 @media (max-width: 768px) {
-  .section { padding: 52px 0 94px; }
+  .section { padding: 37.3px 0 42px; }
 
   .ring { left: -30px; top: 30px; width: 150px; }
   .logo { left: 20px; bottom: 0; width: 330px; }
 
   .inner { max-width: none; padding: 0 22px; }
+
+  .spBr { display: inline; }
 
   .heading { font-size: 25px; line-height: 35.4px; }
 
@@ -106,6 +110,6 @@
 
   .colTitle { font-size: 17px; }
 
-  .items { margin-top: 16px; font-size: 14px; line-height: 1.95; }
-  .itemsSmall { font-size: 13px; line-height: 1.85; margin-top: 14px; }
+  .items { margin-top: 16px; font-size: 14px; line-height: 1.83; }
+  .itemsSmall { font-size: 13px; line-height: 1.44; margin-top: 14px; }
 }

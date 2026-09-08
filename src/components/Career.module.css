@@ -98,10 +98,11 @@
 
 /* ---------------- SP：縦型 ---------------- */
 @media (max-width: 768px) {
-  .section { padding: 66px 0 80px; position: relative; }
+  .section { padding: 51.3px 0 36px; position: relative; }
   .inner { padding: 0 22px; max-width: none; }
 
-  .lead { margin-top: 18px; font-size: 15px; line-height: 1.9; }
+  /* 完成デザインではリード文だけ見出しより外側から始まる */
+  .lead { margin: 18px -11.3px 0; font-size: 15px; line-height: 1.6; }
 
   .chart { display: none; }
 
@@ -127,8 +128,10 @@
 
   .spItem {
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
   }
+
+  .spItem:last-child { margin-bottom: 0; }
 
   .spYear {
     display: flex;
@@ -142,6 +145,7 @@
   .spBody {
     margin-top: 8px;
     padding-left: 16px;
+    padding-bottom: 15px;
     border-left: 5px solid var(--orange);
   }
 
