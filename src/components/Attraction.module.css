@@ -100,7 +100,7 @@
 @media (max-width: 768px) {
   .section { padding: 40px 20px; }
 
-  .box { padding: 44px 20px 119px; max-width: none; }
+  .box { padding: 44px 13.4px 119px; max-width: none; }
 
   .heading { font-size: 42px; }
   .lead { font-size: 22px; }

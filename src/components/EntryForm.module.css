@@ -55,6 +55,7 @@
   height: 39px;
   border: 1px solid #d8d8d8;
   color: #cfcfcf;
+  font-family: var(--font-num);
   font-size: 17px;
   font-weight: 900;
   line-height: 1;

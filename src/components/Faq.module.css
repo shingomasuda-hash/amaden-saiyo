@@ -83,16 +83,16 @@
   align-self: center;
   width: 0;
   height: 0;
-  margin: 0 8px 0 4px;
+  margin: 0 18.5px 0 4px;
   padding: 0;
   border: 0;
   background: none;
-  border-left: 9.5px solid transparent;
-  border-right: 9.5px solid transparent;
+  border-left: 15.5px solid transparent;
+  border-right: 15.5px solid transparent;
 }
 
-.triDown { border-top: 12px solid var(--red); }
-.triUp { border-bottom: 12px solid var(--red); cursor: pointer; }
+.triDown { border-top: 18.5px solid var(--red); }
+.triUp { border-bottom: 18.5px solid var(--red); cursor: pointer; }
 
 /* ---- 回答パネル ---- */
 .panel {
@@ -164,13 +164,13 @@
   }
 
   .tri {
-    border-left-width: 9px;
-    border-right-width: 9px;
-    margin: 0 10px 0 2px;
+    border-left-width: 13.7px;
+    border-right-width: 13.7px;
+    margin: 0 5.2px 0 2px;
   }
 
-  .triDown { border-top-width: 11px; }
-  .triUp { border-bottom-width: 11px; }
+  .triDown { border-top-width: 16.4px; }
+  .triUp { border-bottom-width: 16.4px; }
 
   .panelRow { padding: 14px 6px 16px 0; }
 
