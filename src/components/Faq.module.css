@@ -1,0 +1,184 @@
+.section {
+  background: var(--white);
+  padding: 62px 0 106px;
+}
+
+.inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 56px;
+}
+
+.red { color: var(--red); }
+
+.heading {
+  display: flex;
+  align-items: center;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.headText { white-space: nowrap; }
+
+.line {
+  flex: 1;
+  height: 13px;
+  margin-left: 22px;
+  background: var(--orange);
+}
+
+.list {
+  width: 750px;
+  margin: 80px auto 0;
+}
+
+.item {
+  margin-bottom: 15px;
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.05);
+}
+
+/* ---- 質問行（閉じた状態） ---- */
+.question {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: var(--light-gray);
+  text-align: left;
+  color: var(--text);
+}
+
+.mark {
+  flex: none;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.qText {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  padding: 4px 10px 4px 22px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+/* ---- 三角 ---- */
+.tri {
+  flex: none;
+  align-self: center;
+  width: 0;
+  height: 0;
+  margin: 0 8px 0 4px;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-left: 9.5px solid transparent;
+  border-right: 9.5px solid transparent;
+}
+
+.triDown { border-top: 12px solid var(--red); }
+.triUp { border-bottom: 12px solid var(--red); cursor: pointer; }
+
+/* ---- 回答パネル ---- */
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  background: var(--white);
+  transition: grid-template-rows 0.24s ease, opacity 0.24s ease;
+  opacity: 0;
+}
+
+.panelOpen {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.panelInner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.panelRow {
+  display: flex;
+  align-items: flex-start;
+  padding: 16px 8px 16px 0;
+}
+
+.aMark {
+  flex: none;
+  width: 50px;
+  text-align: center;
+  color: var(--orange);
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 0.75;
+}
+
+.aText {
+  flex: 1;
+  padding: 0 10px 0 16px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.69;
+  letter-spacing: 0.01em;
+}
+
+/* ---------------- SP ---------------- */
+@media (max-width: 768px) {
+  .section { padding: 62px 0 34px; }
+  .inner { max-width: none; padding: 0 22px; }
+
+  .heading { font-size: 26px; }
+  .line { height: 9px; margin-left: 16px; }
+
+  .list { width: 100%; margin-top: 30px; }
+
+  .item { margin-bottom: 20px; }
+
+  .mark {
+    width: 59px;
+    height: 59px;
+    font-size: 40px;
+  }
+
+  .qText {
+    min-height: 59px;
+    padding: 6px 4px 6px 17px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .tri {
+    border-left-width: 9px;
+    border-right-width: 9px;
+    margin: 0 10px 0 2px;
+  }
+
+  .triDown { border-top-width: 11px; }
+  .triUp { border-bottom-width: 11px; }
+
+  .panelRow { padding: 14px 6px 16px 0; }
+
+  .aMark { width: 59px; font-size: 34px; }
+
+  .aText {
+    padding: 0 6px 0 12px;
+    font-size: 15px;
+    line-height: 1.72;
+  }
+}

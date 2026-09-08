@@ -1,0 +1,193 @@
+/* PC 実測値（完成デザイン 2160px 幅 @2x → CSS 1080px）に合わせた固定値 */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 79px;
+  padding: 0 31px;
+  background: var(--white);
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.logoMark {
+  width: 156px;
+  height: auto;
+}
+
+.logoName {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: var(--text);
+}
+
+.ctas {
+  display: flex;
+  align-items: stretch;
+  height: 50px;
+}
+
+.visit,
+.apply {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.visit {
+  width: 250px;
+  padding: 0 14px 0 16px;
+  border: 1px solid var(--red);
+  background: var(--white);
+  color: var(--text);
+}
+
+.visitText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  gap: 2px;
+}
+
+.visitMain {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+.visitSub {
+  font-size: 9.5px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+.apply {
+  width: 203px;
+  padding: 0 14px 0 18px;
+  background: var(--red);
+  color: var(--white);
+  gap: 12px;
+}
+
+.mail {
+  width: 21px;
+  height: 16px;
+  flex: none;
+}
+
+.applyMain {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.divider {
+  width: 1px;
+  height: 26px;
+  margin: 0 12px 0 8px;
+  background: currentColor;
+  opacity: 0.55;
+  flex: none;
+}
+
+.apply .divider {
+  opacity: 0.7;
+}
+
+.arrow {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
+/* ---------- SP（完成デザイン 569px 幅 → CSS 375px / scale 1.5173）---------- */
+@media (max-width: 768px) {
+  .header {
+    height: 90px;
+    padding: 0 12.7px 0 12px;
+  }
+
+  .logoMark {
+    width: 74px;
+  }
+
+  .logoName {
+    font-size: 7.5px;
+    letter-spacing: 0.02em;
+  }
+
+  .ctas {
+    height: 48px;
+    /* SP は 応募する が左、まずは会社見学する が右 */
+    flex-direction: row;
+  }
+
+  .visit {
+    order: 2;
+    width: 119.4px;
+    padding: 0 8px 0 10px;
+    text-align: center;
+  }
+
+  .visitText {
+    gap: 0;
+    align-items: center;
+  }
+
+  .visitMain {
+    font-size: 11px;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .visitSub {
+    display: none;
+  }
+
+  .apply {
+    order: 1;
+    width: 103.5px;
+    padding: 0 8px 0 10px;
+    gap: 6px;
+    flex-direction: row-reverse;
+  }
+
+  .apply .divider {
+    display: none;
+  }
+
+  .apply .arrow {
+    display: none;
+  }
+
+  .mail {
+    width: 15px;
+    height: 11px;
+  }
+
+  .applyMain {
+    font-size: 12px;
+    flex: none;
+  }
+
+  .visit .divider {
+    height: 20px;
+    margin: 0 6px 0 6px;
+  }
+
+  .arrow {
+    width: 13px;
+    height: 13px;
+  }
+}

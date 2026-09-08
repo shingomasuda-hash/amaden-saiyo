@@ -1,0 +1,97 @@
+.section {
+  background: var(--light-gray);
+  padding: 53px 0 56px;
+}
+
+.card {
+  max-width: 750px;
+  margin: 0 auto;
+  background: var(--white);
+  padding: 85px 0 46px;
+}
+
+.red { color: var(--red); }
+
+.heading {
+  text-align: center;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.lead {
+  margin-top: 35px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.73;
+  letter-spacing: 0.01em;
+}
+
+.table { margin-top: 81px; }
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  padding: 28px 0;
+  border-bottom: 1px dotted #f19aa2;
+  margin: 0 34px;
+}
+
+.row:first-child { border-top: none; }
+
+.label {
+  width: 166px;
+  flex: none;
+  padding-left: 11px;
+  color: var(--red);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+.label span { display: block; }
+
+.value {
+  flex: 1;
+  padding-right: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.72;
+  letter-spacing: 0.01em;
+}
+
+/* ---------------- SP ---------------- */
+@media (max-width: 768px) {
+  .section { padding: 0; background: var(--white); }
+
+  .card { max-width: none; padding: 48px 0 5px; }
+
+  .heading { font-size: 27px; text-align: left; padding-left: 22px; }
+
+  .lead {
+    margin-top: 26px;
+    text-align: left;
+    padding: 0 22px;
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .table { margin-top: 26px; }
+
+  .row {
+    margin: 0 20px;
+    padding: 12px 0;
+  }
+
+  .label {
+    width: 92px;
+    padding-left: 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .value { font-size: 14px; line-height: 1.68; padding-right: 0; }
+}

@@ -1,0 +1,27 @@
+.heading {
+  display: flex;
+  align-items: center;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.text { white-space: nowrap; }
+.accent { color: var(--red); }
+
+.lineRed,
+.lineOrange {
+  flex: 1;
+  height: 12px;
+  margin-left: 20px;
+}
+
+.lineRed { background: var(--red); }
+.lineOrange { background: var(--orange); }
+
+@media (max-width: 768px) {
+  .heading { font-size: 26px; }
+  .lineRed,
+  .lineOrange { height: 8px; margin-left: 14px; }
+}

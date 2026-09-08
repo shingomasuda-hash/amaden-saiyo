@@ -1,0 +1,172 @@
+.section {
+  position: relative;
+  background: var(--light-gray);
+  padding: 63px 0 53px;
+  overflow: hidden;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 56px;
+}
+
+.red { color: var(--red); }
+
+.lead {
+  margin-top: 31px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+}
+
+.cards {
+  margin-top: 38px;
+}
+
+.card {
+  position: relative;
+  padding-top: 53px;
+  margin-bottom: 23px;
+}
+
+/* 細いタブのカードはタブがカード上端に重なるため、上の余白は不要 */
+.card:nth-child(2),
+.card:nth-child(4) {
+  padding-top: 0;
+}
+
+.card:last-child { margin-bottom: 0; }
+
+.tab {
+  position: absolute;
+  left: 0;
+  bottom: auto;
+  top: 0;
+  z-index: 2;
+  justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  background: var(--red);
+  color: var(--white);
+  box-shadow: 8px 8px 0 0 var(--orange);
+}
+
+.tabWide {
+  height: 95px;
+  width: 432px;
+  font-size: 62px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+
+.card:nth-child(3) .tabWide { width: 472px; height: 98px; }
+
+.tabNarrow {
+  height: 47px;
+  width: 304px;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  top: 0;
+}
+
+.card:nth-child(4) .tabNarrow { width: 209px; }
+
+.cardBody {
+  border: 7px solid var(--red);
+  background: var(--white);
+  padding: 100px 40px 17px;
+}
+
+.card:nth-child(3) .cardBody,
+.card:nth-child(4) .cardBody {
+  padding-bottom: 35px;
+}
+
+.card:nth-child(2) .cardBody,
+.card:nth-child(4) .cardBody {
+  padding-top: 62px;
+}
+
+.cardMain {
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+.cardMain strong { font-size: 31px; font-weight: 900; }
+.cardMain small { font-size: 17px; font-weight: 700; }
+.cardMain :global(.line) { display: block; }
+
+.cardSub {
+  margin-top: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+.coil {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 265px;
+  height: auto;
+  z-index: 0;
+}
+
+/* ---------------- SP ---------------- */
+@media (max-width: 768px) {
+  .section { padding: 53px 0 33px; }
+  .inner { padding: 0 22px; max-width: none; }
+
+  .lead {
+    margin-top: 22px;
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .cards { margin-top: 21px; }
+
+  .card { padding-top: 31px; margin-bottom: 21px; }
+
+  .card:nth-child(2),
+  .card:nth-child(4) { padding-top: 0; }
+
+  .tabWide,
+  .card:nth-child(3) .tabWide {
+    height: 62px;
+    width: auto;
+    padding: 0 18px;
+    font-size: 41px;
+  }
+
+  .tabNarrow,
+  .card:nth-child(4) .tabNarrow {
+    height: 36px;
+    width: auto;
+    padding: 0 13px;
+    font-size: 20px;
+  }
+
+  .cardBody {
+    border-width: 5px;
+    padding: 58px 16px 18px;
+  }
+
+  .card:nth-child(2) .cardBody,
+  .card:nth-child(4) .cardBody { padding-top: 40px; }
+
+  .cardMain { font-size: 24px; line-height: 1.6; }
+  .cardMain strong { font-size: 27px; }
+  .cardMain small { font-size: 14px; display: block; }
+
+  .cardSub { font-size: 15px; line-height: 1.65; }
+
+  .coil { width: 130px; }
+}

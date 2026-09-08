@@ -1,0 +1,160 @@
+.section {
+  background: var(--light-gray);
+  padding: 60px 0 53px;
+  overflow: hidden;
+}
+
+.inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 56px;
+}
+
+.lead {
+  margin-top: 25px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 2;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- PC chart ---------- */
+.chart {
+  position: relative;
+  height: 461px;
+  margin-top: 29px;
+}
+
+.ramp {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 461.5px;
+}
+
+.steps { position: absolute; inset: 0; }
+
+.step {
+  position: absolute;
+  left: calc(56.5px + var(--i) * 194.25px);
+  top: calc(165px - var(--i) * 41.25px);
+  width: 185px;
+  padding-left: 18px;
+}
+
+.stepBar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 152px;
+  background: var(--orange);
+}
+
+.stepTitle {
+  font-size: 21px;
+  font-weight: 900;
+  line-height: 1.36;
+  letter-spacing: 0.01em;
+}
+
+.stepTitle span { display: block; }
+
+.stepBody {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.62;
+  letter-spacing: 0.01em;
+}
+
+.years { position: absolute; inset: 0; }
+
+.year {
+  position: absolute;
+  left: calc(56.5px + var(--i) * 194.25px);
+  top: 415px;
+  display: flex;
+  align-items: baseline;
+  height: 38px;
+  padding-left: 4px;
+  color: #333;
+}
+
+.yearNum {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.yearSm {
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.spList { display: none; }
+
+/* ---------------- SP：縦型 ---------------- */
+@media (max-width: 768px) {
+  .section { padding: 66px 0 80px; position: relative; }
+  .inner { padding: 0 22px; max-width: none; }
+
+  .lead { margin-top: 18px; font-size: 15px; line-height: 1.9; }
+
+  .chart { display: none; }
+
+  .spList {
+    display: block;
+    position: relative;
+    margin-top: 34px;
+    padding: 0 22px;
+  }
+
+  /* 下にいくほど広がる淡いオレンジのくさび */
+  .spList::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(251, 123, 34, 0.05), rgba(251, 123, 34, 0.16));
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 62% 0);
+    pointer-events: none;
+  }
+
+  .spItem {
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  .spYear {
+    display: flex;
+    align-items: baseline;
+    color: #333;
+  }
+
+  .spYear .yearNum { font-size: 32px; }
+  .spYear .yearSm { font-size: 21px; }
+
+  .spBody {
+    margin-top: 8px;
+    padding-left: 16px;
+    border-left: 5px solid var(--orange);
+  }
+
+  .spTitle {
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 1.5;
+  }
+
+  .spText {
+    margin-top: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.66;
+  }
+}

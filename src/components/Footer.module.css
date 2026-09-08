@@ -1,0 +1,137 @@
+.footer {
+  position: relative;
+  background: var(--white);
+  padding: 42px 0 0;
+}
+
+/* 左端のオレンジ縦バー */
+.bar {
+  position: absolute;
+  left: 0;
+  top: 28px;
+  bottom: 24px;
+  width: 30px;
+  background: var(--orange);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 56px 37px 85px;
+  text-align: center;
+}
+
+.logoBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.logoMark { width: 157px; height: auto; }
+
+.logoName {
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 13px;
+  width: fit-content;
+  margin: 29px auto 0;
+  font-style: normal;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.company { font-size: 15px; font-weight: 700; }
+.paren { font-weight: 700; }
+.line { display: block; }
+.zip { margin-right: 6px; }
+.slash { margin: 0 2px; }
+
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 38px;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+
+.extIcon { width: 14px; height: 12px; }
+
+.bottomLine {
+  height: 24px;
+  background: var(--orange);
+}
+
+/* ---------------- SP ---------------- */
+@media (max-width: 768px) {
+  .footer { padding-top: 40px; }
+
+  .bar { width: 20px; top: 0; bottom: 20px; }
+
+  .inner { max-width: none; padding: 0 22px 34px; }
+
+  .logoMark { width: 108px; }
+  .logoName { font-size: 9px; }
+
+  .address {
+    align-items: flex-start;
+    margin-top: 28px;
+    gap: 12px;
+    font-size: 17px;
+  }
+
+  .company {
+    display: block;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 1.5;
+  }
+
+  .paren { display: block; }
+
+  .line { font-size: 15px; font-weight: 700; }
+
+  /* SP は 〒 / 住所 / TEL / FAX を 4 行に分ける */
+  .zip,
+  .addr,
+  .tel,
+  .fax { display: block; }
+  .zip { margin-right: 0; }
+  .slash { display: none; }
+
+  .links {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 30px;
+  }
+
+  .links li:nth-child(2),
+  .links li:nth-child(3) { display: inline-block; }
+
+  .bottomLine { height: 20px; }
+}

@@ -1,0 +1,337 @@
+.section {
+  background: var(--orange);
+  padding: 54px 0 53px;
+}
+
+.box {
+  max-width: 750px;
+  margin: 0 auto;
+  background: var(--white);
+  padding: 57px 0 44px;
+}
+
+.red { color: var(--red); }
+
+.heading {
+  text-align: center;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+/* ---- ステップ ---- */
+.steps {
+  display: flex;
+  justify-content: center;
+  gap: 67px;
+  margin-top: 34px;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ステップ間をつなぐ細い線 */
+.step:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 19px;
+  width: 67px;
+  height: 1px;
+  background: #e1e1e1;
+}
+
+.stepNo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 39px;
+  border: 1px solid #d8d8d8;
+  color: #cfcfcf;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.stepNoActive {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--white);
+}
+
+.stepLabel {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #555;
+}
+
+.stepLabelActive { color: var(--red); }
+
+/* ---- 入力 ---- */
+.form { margin-top: 0; }
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  margin: 0 45px;
+  padding: 46px 0 15px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.labelWrap {
+  display: flex;
+  align-items: center;
+  width: 233.5px;
+  flex: none;
+  padding-top: 12px;
+}
+
+.label {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.req {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 21px;
+  background: var(--red);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.control { flex: 1; padding-left: 20px; }
+
+.input,
+.textarea {
+  display: block;
+  width: 300px;
+  height: 45px;
+  padding: 0 14px;
+  border: 0;
+  border-bottom: 1px solid #dcdcdc;
+  background: #f4f4f4;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.textarea {
+  width: 407px;
+  height: 143px;
+  padding: 12px 14px;
+  line-height: 1.7;
+  resize: none;
+}
+
+.input::placeholder,
+.textarea::placeholder { color: #b6b6b6; }
+
+.input:focus,
+.textarea:focus { outline: 2px solid var(--orange); outline-offset: 1px; }
+
+.error {
+  margin-top: 6px;
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.errorCenter { text-align: center; }
+
+/* ---- 同意 ---- */
+.agree {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+  cursor: pointer;
+}
+
+.agree input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.agreeBox {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--red);
+  background: var(--white);
+  flex: none;
+  position: relative;
+}
+
+.agree input:checked + .agreeBox::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 6px;
+  height: 11px;
+  border: solid var(--red);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.agree input:focus-visible + .agreeBox { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+.agreeText {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* ---- ボタン ---- */
+.submit {
+  display: block;
+  width: 202px;
+  height: 50px;
+  margin: 37px auto 0;
+  border: 0;
+  background: var(--red);
+  color: var(--white);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.submit:disabled { opacity: 0.6; }
+
+.back {
+  display: block;
+  width: 160px;
+  height: 50px;
+  margin: 27px auto 0;
+  border: 1px solid var(--red);
+  background: var(--white);
+  color: var(--red);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.confirmBtns {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.confirmBtns .submit { width: 240px; }
+
+/* ---- 確認 / 完了 ---- */
+.confirm { margin: 0 34px; }
+
+.confirmRow {
+  display: flex;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px dotted #f19aa2;
+}
+
+.confirmRow dt {
+  width: 200px;
+  flex: none;
+  color: var(--red);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.confirmRow dd {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.done { padding: 40px 34px 20px; text-align: center; }
+
+.doneTitle {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.6;
+}
+
+.doneText {
+  margin-top: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+/* ---------------- SP ---------------- */
+@media (max-width: 768px) {
+  .section { padding: 40px 20px; }
+
+  .box { max-width: none; padding: 44px 0 46px; }
+
+  .heading { font-size: 26px; }
+
+  .steps { gap: 0; margin-top: 44px; }
+
+  .step { width: 84px; }
+
+  .step:not(:first-child)::before {
+    right: auto;
+    left: -21px;
+    top: 19px;
+    width: 42px;
+  }
+
+  .stepNo { width: 39.4px; height: 40px; font-size: 17px; }
+
+  .form { margin-top: 46px; }
+
+  .row {
+    display: block;
+    margin: 0 20px 31.3px;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .row:last-of-type { margin-bottom: 22px; }
+
+  .labelWrap { width: auto; padding-top: 0; gap: 10px; }
+  .label { flex: none; font-size: 15px; }
+
+  .control { padding-left: 0; margin-top: 20px; }
+
+  .input,
+  .textarea { width: 295.6px; max-width: 100%; height: 60px; }
+  .textarea { height: 179.5px; }
+
+  .agree { margin-top: 22px; }
+  .agreeText { font-size: 14px; }
+
+  .submit {
+    width: 269.6px;
+    height: 65.4px;
+    margin-top: 40px;
+    font-size: 17px;
+    box-shadow: none;
+  }
+
+  .confirm { margin: 0 22px; }
+  .confirmRow { flex-direction: column; gap: 6px; }
+  .confirmRow dt { width: auto; }
+}

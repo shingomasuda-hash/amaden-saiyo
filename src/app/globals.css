@@ -1,0 +1,90 @@
+/* ============================================================
+   Amaden 採用LP - グローバルスタイル
+   カラーは Drive の完成デザイン（design/*.jpg）から
+   ピクセルサンプリングした実測値を使用しています。
+   ============================================================ */
+
+:root {
+  /* --- サンプリング実測色 --- */
+  --red: #e70012;          /* Amaden Red   : 三角アイコン / 強調文字 / ボタン */
+  --orange: #fb7b22;       /* Bright Orange: Q ボックス / CTA背景 / 帯 */
+  --white: #ffffff;
+  --light-gray: #f0f0f0;   /* 質問行の背景 / セクション背景 */
+  --text: #1a1a1a;         /* 本文・見出しの基本色 */
+  --text-soft: #444444;
+  --border: #e2e2e2;
+
+  /* --- レイアウト --- */
+  --content-max: 1200px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* 固定ヘッダー分のアンカーオフセット */
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--white);
+  font-family: var(--font-noto-sans-jp), "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans-serif;
+  font-weight: 500;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  /* 完成デザインは約物を詰めた組み（プロポーショナルメトリクス）*/
+  font-feature-settings: "palt" 1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, p, ul, ol, figure {
+  margin: 0;
+  padding: 0;
+}
+
+/* 大きな見出しはベタ組み（完成デザインの字送りに合わせる） */
+h1, h2, h3 {
+  font-feature-settings: normal;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 全面ブリードや装飾のはみ出しで横スクロールが出ないようにする
+   （完成デザインにも横スクロールは存在しない） */
+html,
+body {
+  overflow-x: clip;
+}

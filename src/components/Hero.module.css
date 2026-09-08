@@ -1,0 +1,258 @@
+/* ============================================================
+   ファーストビュー
+   PC: 完成デザイン(2160px @2x)の実測値を 1/2 した CSS px
+   ============================================================ */
+.hero {
+  position: relative;
+  height: 508px;
+  margin-top: 34px;
+}
+
+/* 写真の背面に敷かれるオレンジのブロック（左端と写真下に見える） */
+.orange {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 242px;
+  height: 266px;
+  background: var(--orange);
+}
+
+.photo {
+  position: absolute;
+  left: 30px;
+  right: 0;
+  top: 0;
+  height: 452px;
+  overflow: hidden;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+}
+
+.photoSp {
+  display: none;
+}
+
+.copy {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  font-weight: 900;
+  color: var(--white);
+  pointer-events: none;
+  /* FV の大見出しはベタ組み（完成デザイン実測に合わせる） */
+  font-feature-settings: normal;
+}
+
+/* --- 「工場を止めない提案で」赤帯 --- */
+.lead {
+  position: absolute;
+  left: 30px;
+  top: 156px;
+  display: block;
+}
+
+.leadBand {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 505px;
+  height: 25px;
+  background: var(--red);
+}
+
+.leadText {
+  position: relative;
+  display: block;
+  padding-left: 32px;
+  font-size: 42.5px;
+  line-height: 1;
+  letter-spacing: 0.092em;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45);
+}
+
+/* --- 大見出し（グリフごとにサイズ・位置が違う組み） --- */
+.big {
+  display: block;
+}
+
+.big > span {
+  position: absolute;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.35);
+}
+
+.qOpen,
+.qClose {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  text-shadow: none;
+}
+
+.qOpen {
+  left: 62px;
+  top: 208px;
+  font-size: 153px;
+  color: var(--orange);
+}
+
+.qClose {
+  left: 543px;
+  top: 287px;
+  font-size: 142px;
+  color: var(--red);
+}
+
+.xl1 {
+  left: 133px;
+  top: 236px;
+  font-size: 105px;
+}
+
+.mid1 {
+  left: 291px;
+  top: 353px;
+  font-size: 42px;
+}
+
+.xl2 {
+  left: 341px;
+  top: 312px;
+  font-size: 105px;
+}
+
+.mid2 {
+  left: 557px;
+  top: 370px;
+  font-size: 42px;
+}
+
+.lg {
+  left: 594px;
+  top: 339px;
+  font-size: 74.5px;
+  letter-spacing: -0.035em;
+}
+
+.coil {
+  position: absolute;
+  left: 30px;
+  top: 452px;
+  width: 270px;
+  height: auto;
+  z-index: 2;
+}
+
+/* ============================================================
+   SP（完成デザイン 569px 幅 → CSS 375px / scale 1.5173）
+   PC の縮小ではなく SP 完成画像を独立した正解として実装
+   ============================================================ */
+@media (max-width: 768px) {
+  .hero {
+    height: 574px;
+    margin-top: 0;
+  }
+
+  /* 写真の左に見えるオレンジのブロック */
+  .orange {
+    left: 0;
+    right: 355px;
+    top: 139px;
+    height: 434px;
+  }
+
+  .photo {
+    display: none;
+  }
+
+  .photoSp {
+    display: block;
+    position: absolute;
+    left: 20px;
+    right: 0;
+    top: 0;
+    height: 574px;
+    overflow: hidden;
+  }
+
+  .photoSp img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .lead {
+    left: 0;
+    top: 41px;
+  }
+
+  .leadBand {
+    left: 0;
+    top: 11px;
+    width: 316px;
+    height: 18px;
+  }
+
+  .leadText {
+    padding-left: 21px;
+    font-size: 26px;
+    letter-spacing: 0.103em;
+    text-shadow: 0 2px 9px rgba(0, 0, 0, 0.45);
+  }
+
+  .qOpen {
+    left: 6px;
+    top: 63px;
+    font-size: 101px;
+  }
+
+  .qClose {
+    left: 319px;
+    top: 76px;
+    font-size: 107px;
+  }
+
+  .xl1 {
+    left: 54px;
+    top: 82px;
+    font-size: 57.6px;
+  }
+
+  .mid1 {
+    left: 175px;
+    top: 108px;
+    font-size: 28.5px;
+  }
+
+  .xl2 {
+    left: 206px;
+    top: 101px;
+    font-size: 57.6px;
+  }
+
+  .mid2 {
+    left: 327px;
+    top: 125px;
+    font-size: 28px;
+  }
+
+  .lg {
+    left: 100px;
+    top: 178px;
+    font-size: 45px;
+    letter-spacing: -0.035em;
+  }
+
+  .coil {
+    left: 12px;
+    top: 442px;
+    width: 152px;
+  }
+}
