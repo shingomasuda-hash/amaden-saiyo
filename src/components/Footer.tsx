@@ -21,16 +21,16 @@ export default function Footer() {
 
         <address className={s.address}>
           <span className={s.company}>
-            株式会社Amaden<span className={s.paren}>（尼崎電機製作所）</span>
+            株式会社Amaden
           </span>
           <span className={s.line}>
             <span className={s.zip}>〒660-0087</span>
             <span className={s.addr}>兵庫県尼崎市平左衛門町18-26</span>
           </span>
           <span className={s.line}>
-            <span className={s.tel}>TEL 06-6481-4455</span>
+            <span className={s.tel}>TEL 06-6415-9623</span>
             <span className={s.slash}>／</span>
-            <span className={s.fax}>FAX 06-6481-4456</span>
+            <span className={s.fax}>FAX 06-6415-9624</span>
           </span>
         </address>
 

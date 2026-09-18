@@ -7,7 +7,7 @@ export default function Company() {
       <Image
         className={s.pc}
         src="/assets/company/company-photo.jpg"
-        alt="株式会社Amaden 尼崎電機製作所の外観"
+        alt="株式会社Amadenの外観"
         width={2160}
         height={1040}
         sizes="100vw"
@@ -27,7 +27,7 @@ export default function Company() {
           <span className={s.rest}>地元に根付いた会社です</span>
         </h2>
         <p className={s.body}>
-          株式会社Amaden（尼崎電機製作所）は、モーターと電磁コイル専門せ製作所。
+          株式会社Amadenは、モーターと電磁石コイルの製造、メンテナンス会社。
           <br />
           廃番品や特殊仕様にも向き合い、工場・設備の安定稼働を支えています。
         </p>

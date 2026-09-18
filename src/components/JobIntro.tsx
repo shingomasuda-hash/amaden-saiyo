@@ -3,7 +3,7 @@ import s from "./JobIntro.module.css";
 
 const POINTS = [
   { label: "賞与", main: "年2回", sub: "50年以上継続", subPos: "right" },
-  { label: "残業", main: "月20時間", sub: "未満", subPos: "right" },
+  { label: "残業", main: "月30時間", sub: "未満", subPos: "right" },
   { label: "営業", main: "ノルマなし", sub: "", subPos: "right" },
 ] as const;
 

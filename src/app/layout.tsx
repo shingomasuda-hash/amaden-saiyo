@@ -22,10 +22,10 @@ const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-const SITE_NAME = "株式会社Amaden（尼崎電機製作所）";
+const SITE_NAME = "株式会社Amaden";
 const TITLE = "営業職（中途）採用｜株式会社Amaden";
 const DESCRIPTION =
-  "産業用モーターの整備・修理で、お客様の生産現場を支える営業職。営業ノルマなし、賞与年2回（50年以上継続）、残業月20時間未満。モーターの知識は不要です。";
+  "産業用モーターの整備・修理で、お客様の生産現場を支える営業職。営業ノルマなし、賞与年2回（50年以上継続）、残業月30時間未満。モーターの知識は不要です。";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -54,12 +54,21 @@ export const viewport: Viewport = {
  * 画面幅に合わせて全体を等倍で拡大／縮小する（zoom）。
  * これにより、どの画面幅でも完成デザインと同じ比率・同じ構図で表示される。
  * スクロールバーを除いた実寸が必要なので clientWidth を使う。
+ *
+ * 拡大率の決め方（PC）
+ * - 1080px 未満：収まるように縮小する（= w / 1080）
+ * - 1080px 以上：画面幅の FILL（80%）を占める大きさにし、1.0〜MAX(1.3) に収める
+ *   画面いっぱいまで引き伸ばさず、左右に余白を残す。
  */
 const STAGE_SCALE = `(function(){
   var d = document.documentElement;
+  var BASE = 1080, FILL = 0.8, MAX = 1.3;
   function set(){
-    var w = d.clientWidth;
-    d.style.setProperty('--stage-scale', w > 768 ? String(Math.min(w / 1080, 1.8)) : '1');
+    var w = d.clientWidth, s;
+    if (w <= 768) s = 1;
+    else if (w < BASE) s = w / BASE;
+    else s = Math.min(Math.max(w * FILL / BASE, 1), MAX);
+    d.style.setProperty('--stage-scale', String(s));
   }
   set();
   addEventListener('resize', set, { passive: true });

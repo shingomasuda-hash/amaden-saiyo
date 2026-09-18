@@ -56,7 +56,6 @@
 }
 
 .company { font-size: 15px; font-weight: 700; }
-.paren { font-weight: 700; }
 .line { display: block; }
 .zip { margin-right: 6px; }
 .slash { margin: 0 2px; }
@@ -100,7 +99,7 @@
   .address {
     align-items: flex-start;
     margin-top: 28px;
-    gap: 12px;
+    gap: 9px;
     font-size: 17px;
   }
 
@@ -111,9 +110,15 @@
     line-height: 1.5;
   }
 
-  .paren { display: block; }
 
-  .line { font-size: 15px; font-weight: 700; }
+  /* 〒 / 住所 / TEL / FAX を等間隔の4行にする */
+  .line {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    font-size: 15px;
+    font-weight: 700;
+  }
 
   /* SP は 〒 / 住所 / TEL / FAX を 4 行に分ける */
   .zip,
@@ -123,15 +128,19 @@
   .zip { margin-right: 0; }
   .slash { display: none; }
 
+  /* 完成デザインは「企業サイトへ」が1行目、残り2つが2行目に横並び */
   .links {
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 16px;
+    gap: 22px 26px;
     margin-top: 30px;
   }
 
-  .links li:nth-child(2),
-  .links li:nth-child(3) { display: inline-block; }
+  .links li:first-child {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+  }
 
   .bottomLine { height: 20px; }
 }
