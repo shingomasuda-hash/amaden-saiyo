@@ -30,8 +30,8 @@ export default function SalesRole() {
                 </>
               ) : (
                 <>
-                  <Image className={s.pc} src="/assets/role/role-02-diagram.png" alt="顧客・営業・技術者の関係図" width={634} height={450} sizes="(max-width:768px) 100vw, 317px" />
-                  <Image className={s.sp} src="/assets/sp/role-02-diagram.png" alt="" width={502} height={432} sizes="100vw" />
+                  <Image className={s.pc} src="/assets/role/role-02-diagram.png" alt="顧客・営業・技術者の関係図" width={530} height={476} sizes="(max-width:768px) 100vw, 265px" />
+                  <Image className={s.sp} src="/assets/sp/role-02-diagram.png" alt="" width={503} height={477} sizes="100vw" />
                 </>
               )}
             </div>
