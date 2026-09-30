@@ -13,8 +13,8 @@ export default function EmployeeStories() {
         className={s.coil}
         src="/assets/decoration/coil-story.png"
         alt=""
-        width={570}
-        height={480}
+        width={506}
+        height={385}
       />
 
       {/* ---- Interview 01 ---- */}

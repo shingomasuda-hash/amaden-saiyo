@@ -2,7 +2,6 @@
   position: relative;
   background: var(--white);
   padding-bottom: 49px;
-  overflow: hidden;
 }
 
 .headBlock {
@@ -24,9 +23,9 @@
 
 .coil {
   position: absolute;
-  right: 100px;
-  top: -102px;
-  width: 285px;
+  right: 49px;
+  top: -64.9px;
+  width: 253px;
   height: auto;
 }
 
@@ -156,7 +155,7 @@
   .headBlock { width: 234px; height: 152px; }
   .headText { padding-left: 22px; font-size: 27px; }
 
-  .coil { right: 22px; top: -66px; width: 160px; }
+  .coil { right: 6.7px; top: -37.8px; width: 101.4px; }
 
   .itv1 { margin-top: 0; }
   .itv2 { margin-top: 48px; }

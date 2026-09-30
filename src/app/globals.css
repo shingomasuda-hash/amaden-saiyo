@@ -68,6 +68,9 @@ img {
     width: 1080px;
     margin-inline: auto;
     zoom: var(--stage-scale, 1);
+    /* 画面幅より狭いステージなので、はみ出しはステージ端で切る
+       （clip なのでスクロールコンテナにはならず、上下のはみ出しは残る） */
+    overflow-x: clip;
   }
 }
 
@@ -103,4 +106,16 @@ ul, ol {
 html,
 body {
   overflow-x: clip;
+}
+
+/* 画面下部に出しっぱなしにする応募バーのぶん、
+   ページの一番下に余白を確保する（バーがフッターを隠さないように） */
+body {
+  padding-bottom: 64px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 58px;
+  }
 }
