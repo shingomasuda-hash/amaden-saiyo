@@ -30,6 +30,22 @@ export default function EmployeeStories() {
           </div>
         </div>
 
+        {/* 完成デザインでは頭が写真の上辺からはみ出して赤ブロックに重なる */}
+        <Image
+          className={s.head1}
+          src="/assets/interview/interview-01-head.png"
+          alt=""
+          width={171}
+          height={76}
+        />
+        <Image
+          className={s.headSp1}
+          src="/assets/sp/interview-01-head.png"
+          alt=""
+          width={87}
+          height={39}
+        />
+
         <h3 className={`${s.bars} ${s.bars1}`}>
           <span className={s.bar}>「技術」と「営業」</span>
           <span className={s.bar}>両方を経験して見えたこと</span>
