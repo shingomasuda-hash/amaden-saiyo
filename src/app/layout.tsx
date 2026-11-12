@@ -51,12 +51,17 @@ export const viewport: Viewport = {
 };
 
 /**
- * 完成デザインは 1080px 幅で作られているため、レイアウトは常に 1080px で組み、
- * 画面幅に合わせて全体を等倍で拡大／縮小する（zoom）。
+ * 完成デザインは PC 1080px / SP 375px 幅で作られているため、レイアウトは
+ * 常にその設計幅で組み、画面幅に合わせて全体を等倍で拡大／縮小する（zoom）。
  * これにより、どの画面幅でも完成デザインと同じ比率・同じ構図で表示される。
  * スクロールバーを除いた実寸が必要なので clientWidth を使う。
  *
- * 拡大率の決め方（PC）
+ * 拡大率の決め方（SP: 768px 以下）
+ * - 設計幅 375px に対する画面幅の比（= w / 375）。実機の 320〜430px は
+ *   そのまま画面幅いっぱいになる。タブレット級に広がりすぎないよう
+ *   SP_MAX(1.5) で頭打ちにし、それ以上は中央寄せで左右に余白を残す。
+ *
+ * 拡大率の決め方（PC: 769px 以上）
  * - 1080px 未満：収まるように縮小する（= w / 1080）
  * - 1080px 以上：画面幅の FILL（80%）を占める大きさにし、1.0〜MAX(1.3) に収める
  *   画面いっぱいまで引き伸ばさず、左右に余白を残す。
@@ -64,9 +69,10 @@ export const viewport: Viewport = {
 const STAGE_SCALE = `(function(){
   var d = document.documentElement;
   var BASE = 1080, FILL = 0.8, MAX = 1.3;
+  var SP_BASE = 375, SP_MAX = 1.5;
   function set(){
     var w = d.clientWidth, s;
-    if (w <= 768) s = 1;
+    if (w <= 768) s = Math.min(w / SP_BASE, SP_MAX);
     else if (w < BASE) s = w / BASE;
     else s = Math.min(Math.max(w * FILL / BASE, 1), MAX);
     d.style.setProperty('--stage-scale', String(s));

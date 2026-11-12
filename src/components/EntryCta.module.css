@@ -39,6 +39,12 @@
   letter-spacing: 0;
 }
 
+/* SP だけの改行／引用符の出し分け */
+.spBr,
+.quoteSp {
+  display: none;
+}
+
 .buttons {
   position: relative;
   display: flex;
@@ -117,12 +123,16 @@
   .bgText { font-size: 128px; top: 22px; }
 
   .heading {
-    font-size: 28px;
-    line-height: 1.5;
+    font-size: 24px;
+    line-height: 1.325;
     letter-spacing: 0.1em;
   }
 
-  .quote { font-size: 38px; margin: 0 10px; }
+  .spBr { display: inline; }
+  .quoteSp { display: inline; }
+  .quotePc { display: none; }
+
+  .quote { font-size: 46px; font-weight: 700; margin: 0 16px; }
 
   .buttons {
     flex-direction: column;

@@ -20,7 +20,11 @@ export default function Header() {
       <nav className={s.ctas}>
         <a className={s.visit} href="#entry">
           <span className={s.visitText}>
-            <span className={s.visitMain}>まずは会社見学する</span>
+            <span className={s.visitMain}>
+              まずは
+              <br className={s.spBr} />
+              会社見学する
+            </span>
             <span className={s.visitSub}>見学だけ／話を聞くだけでも大丈夫です</span>
           </span>
           <span className={s.divider} aria-hidden="true" />

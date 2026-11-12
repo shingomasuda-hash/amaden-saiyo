@@ -112,6 +112,11 @@
 }
 
 /* ---------- SP（完成デザイン 569px 幅 → CSS 375px / scale 1.5173）---------- */
+/* SP だけ「まずは／会社見学する」で改行する（完成デザインどおり） */
+.spBr {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .header {
     height: 90px;
@@ -133,22 +138,29 @@
     flex-direction: row;
   }
 
+  .spBr {
+    display: inline;
+  }
+
   .visit {
     order: 2;
-    width: 119.4px;
-    padding: 0 8px 0 10px;
-    text-align: center;
+    width: 118.1px;
+    padding: 0 7px 0 7.4px;
+    text-align: left;
   }
 
   .visitText {
     gap: 0;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .visitMain {
-    font-size: 11px;
-    line-height: 1.25;
-    text-align: center;
+    font-size: 12px;
+    line-height: 1.333;
+    letter-spacing: 0.06em;
+    text-align: left;
+    /* 改行位置は完成デザインどおり spBr だけで決める */
+    white-space: nowrap;
   }
 
   .visitSub {

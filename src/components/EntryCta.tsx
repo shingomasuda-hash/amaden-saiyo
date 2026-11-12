@@ -6,10 +6,15 @@ export default function EntryCta() {
     <section className={s.section}>
       <span className={s.bgText} aria-hidden="true">ENTRY</span>
 
+      {/* 完成デザインでは SP だけ「お気軽に」／「ご応募ください」の2行組みになり、
+          閉じ引用符は1行目の右側に付く */}
       <p className={s.heading}>
         <span className={s.quote} aria-hidden="true">“</span>
-        お気軽にご応募ください
-        <span className={s.quote} aria-hidden="true">”</span>
+        お気軽に
+        <span className={`${s.quote} ${s.quoteSp}`} aria-hidden="true">”</span>
+        <br className={s.spBr} />
+        ご応募ください
+        <span className={`${s.quote} ${s.quotePc}`} aria-hidden="true">”</span>
       </p>
 
       <div className={s.buttons}>
