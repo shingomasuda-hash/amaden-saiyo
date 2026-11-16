@@ -61,7 +61,7 @@ const PC = [
   ['footer logo',       'footer img',                         {x:476.5,y:12297.5,w:157,h:39.5}],
 ];
 (async () => {
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1243/chrome-linux64/chrome' });
   const ctx = await b.newContext({ viewport: { width: 1080, height: 900 } });
   const p = await ctx.newPage();
   await p.goto('http://127.0.0.1:3000/', { waitUntil: 'networkidle' });

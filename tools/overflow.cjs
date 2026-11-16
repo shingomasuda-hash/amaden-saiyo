@@ -1,6 +1,6 @@
 const { chromium } = require('playwright');
 (async () => {
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1243/chrome-linux64/chrome' });
   for (const w of [1080, 375]) {
     const ctx = await b.newContext({ viewport: { width: w, height: 900 } });
     const p = await ctx.newPage();

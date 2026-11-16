@@ -79,6 +79,16 @@ export default function EmployeeStories() {
           </div>
         </div>
 
+        {/* SP も完成デザインでは頭が写真の上辺からはみ出す
+            （PC は写真素材に白地ごと含まれている） */}
+        <Image
+          className={s.headSp2}
+          src="/assets/sp/interview-02-head.png"
+          alt=""
+          width={73}
+          height={34}
+        />
+
         <h3 className={`${s.bars} ${s.bars2}`}>
           <span className={s.bar}>どうしたの？の一言で、</span>
           <span className={s.bar}>人が集まる、その「温かみ」</span>

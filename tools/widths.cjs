@@ -1,6 +1,6 @@
 const { chromium } = require('playwright');
 (async () => {
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1243/chrome-linux64/chrome' });
   const out = process.argv[2];
   require('fs').mkdirSync(out, { recursive: true });
   for (const w of [1920, 1440, 1280, 1080, 900, 768, 375]) {

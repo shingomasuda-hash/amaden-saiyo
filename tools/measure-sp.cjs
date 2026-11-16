@@ -34,7 +34,7 @@ const SP = [
   ['footer',        'footer',                              {x:0,y:13479,w:375,h:458.4}],
 ];
 (async () => {
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1243/chrome-linux64/chrome' });
   const ctx = await b.newContext({ viewport: { width: 375, height: 800 } });
   const p = await ctx.newPage();
   await p.goto('http://127.0.0.1:3000/', { waitUntil: 'networkidle' });

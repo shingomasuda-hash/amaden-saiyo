@@ -94,7 +94,8 @@
   z-index: 2;
 }
 
-.headSp1 { display: none; }
+.headSp1,
+.headSp2 { display: none; }
 
 /* --- 赤い見出しバー --- */
 .bars {
@@ -192,6 +193,17 @@
   .photoSp2 { display: block; }
 
   .head1 { display: none; }
+
+  .headSp2 {
+    display: block;
+    position: absolute;
+    left: 181.5px;
+    top: -22px;
+    width: 48.7px;
+    height: auto;
+    z-index: 2;
+  }
+
 
   .headSp1 {
     display: block;
