@@ -66,11 +66,6 @@ export default function WantedSection() {
         </ul>
       </div>
 
-      <p className={s.outro}>
-        関係構築・ヒアリング・調整力・納期管理・提案・見積もり・折衝、今までの営業経験が、そのまま強みに。
-        <br />
-        モーターの知識は不要です。入社後、技術者と一緒に現場で学べます。
-      </p>
     </section>
   );
 }
