@@ -6,6 +6,7 @@
 ブラウザ → /api/entry（このサイト） → Apps Script Web アプリ
                                         ├ スプレッドシートに1行追記
                                         ├ 担当者へ完了メール
+                                        ├ 応募者へ自動返信メール
                                         └ Drive にJSONでバックアップ
 ```
 
@@ -81,7 +82,9 @@ Vercel のプロジェクト設定 → Environment Variables（Production / Prev
 | スプレッドシート | Amaden採用LP 応募管理 |
 | シート | 応募一覧 |
 | Drive バックアップフォルダ | Amaden採用LP 応募バックアップ |
-| 通知メール件名 | 【応募】山田太郎さん｜Amaden採用サイト |
+| 通知メール件名（担当者宛） | 【応募】山田太郎さん｜Amaden採用サイト |
+| 自動返信件名（応募者宛） | 【ご応募ありがとうございます】株式会社Amaden 採用担当 |
+| 自動返信の送信者名 | 株式会社Amaden 採用担当 |
 | 合言葉（TOKEN） | `a9nchclOxPyS2vzssTT6DZHhPYeT3UgkvtNTeILe` |
 
 シート名・フォルダ名・件名は `docs/gas/entry.gs` の冒頭で変更できます。
@@ -93,6 +96,7 @@ Vercel のプロジェクト設定 → Environment Variables（Production / Prev
 | 「送信先が未設定です」と出る | Vercel に `ENTRY_WEBHOOK_URL` が入っているか、再デプロイしたか |
 | 「送信に失敗しました」と出る | Apps Script の「実行数」ログにエラーが出ていないか |
 | シートには入るがメールが来ない | `entry.gs` の `RECIPIENTS` が入っているか、迷惑メールフォルダ |
+| 応募者に自動返信が届かない | 実行ログに「自動返信の送信に失敗」が出ていないか。1日の送信上限（Gmail 100通／Workspace 1500通）も確認 |
 | ログに `unauthorized` | `entry.gs` の `TOKEN` と Vercel の `ENTRY_WEBHOOK_TOKEN` が一致しているか |
 
 送信が失敗した場合でも、応募内容は Vercel のファンクションログに残ります。

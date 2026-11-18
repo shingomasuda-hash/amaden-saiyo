@@ -4,6 +4,7 @@
  * やること
  *   1. スプレッドシートに1行追記（これまで通りスプシで管理できる）
  *   2. 担当者へ完了メールを送信
+ *   2-2. 応募者へ自動返信メールを送信
  *   3. Drive のバックアップフォルダに JSON を1件ずつ保存（バックアップ）
  *
  * 設定はすべてこのファイル冒頭の「設定」ブロックに集約してある。
@@ -35,6 +36,18 @@ var SHEET_NAME = '応募一覧';
 
 /** バックアップ先の Drive フォルダ名（無ければ自動で作成する） */
 var BACKUP_FOLDER_NAME = 'Amaden採用LP 応募バックアップ';
+
+/** 応募者への自動返信の送信者名。返信先は RECIPIENTS の1番目を使う。 */
+var SENDER_NAME = '株式会社Amaden 採用担当';
+
+/** 自動返信メールの署名 */
+var SIGNATURE = [
+  '──────────────────────',
+  '株式会社Amaden',
+  '〒660-0087 兵庫県尼崎市平左衛門町18-26',
+  'TEL 06-6415-9623 / FAX 06-6415-9624',
+  '──────────────────────',
+].join('\n');
 
 /** メール件名（受信箱で誰からの応募か一目で分かるよう氏名を入れる） */
 function subject_(name) {
@@ -80,6 +93,13 @@ function doPost(e) {
     saveBackup_(received, data);
     sendMail_(row);
 
+    // 自動返信が失敗しても、記録と担当者通知は成立させる
+    try {
+      sendAutoReply_(row);
+    } catch (mailErr) {
+      console.error('自動返信の送信に失敗しました', mailErr);
+    }
+
     return json_({ ok: true });
   } catch (err) {
     // 失敗しても応募内容が消えないよう、実行ログに生データを残す
@@ -108,7 +128,10 @@ function testRun() {
   appendRow_(row);
   saveBackup_(received, { name: row[1], note: row[5], test: true });
   sendMail_(row);
-  console.log('テスト送信しました。シート・メール・Drive を確認してください。');
+  // 応募者への自動返信を自分宛に送って内容を確認する
+  row[2] = Session.getActiveUser().getEmail() || row[2];
+  sendAutoReply_(row);
+  console.log('テスト送信しました。シート・メール（担当者宛と自動返信）・Drive を確認してください。');
 }
 
 /** 動作確認用（ブラウザでデプロイ URL を開くと OK が出る） */
@@ -139,6 +162,48 @@ function saveBackup_(received, data) {
   var folders = DriveApp.getFoldersByName(BACKUP_FOLDER_NAME);
   var folder = folders.hasNext() ? folders.next() : DriveApp.createFolder(BACKUP_FOLDER_NAME);
   folder.createFile(backupName_(received, data.name), JSON.stringify(data, null, 2), MimeType.PLAIN_TEXT);
+}
+
+/** 応募者本人への自動返信 */
+function sendAutoReply_(row) {
+  var to = row[2];
+  if (!to) return;
+
+  var recipients = RECIPIENTS.filter(function (v) { return v && v.trim(); });
+  var body = [
+    row[1] + ' 様',
+    '',
+    'このたびは株式会社Amadenの採用サイトよりご応募いただき、',
+    '誠にありがとうございます。',
+    '下記の内容で応募を受け付けいたしました。',
+    '',
+    '──────────────────────',
+    'お名前：' + row[1],
+    'メールアドレス：' + row[2],
+    '生年月日：' + row[3],
+    '電話番号：' + row[4],
+    '備考：',
+    row[5],
+    '──────────────────────',
+    '',
+    '内容を確認のうえ、採用担当よりあらためてご連絡いたします。',
+    '今しばらくお待ちくださいますようお願いいたします。',
+    '',
+    '※本メールは自動送信です。ご返信いただいてもお答えできません。',
+    '　お急ぎの場合はお電話にてお問い合わせください。',
+    '',
+    SIGNATURE,
+  ].join('\n');
+
+  var options = {
+    to: to,
+    subject: '【ご応募ありがとうございます】株式会社Amaden 採用担当',
+    body: body,
+    name: SENDER_NAME,
+  };
+  if (recipients.length) options.replyTo = recipients[0];
+
+  MailApp.sendEmail(options);
 }
 
 function sendMail_(row) {
