@@ -20,18 +20,18 @@
 2. 「拡張機能 → Apps Script」を開く
 3. `docs/gas/entry.gs` の中身をすべて貼り付けて保存
 
-## 2. 宛先と合言葉をスクリプト プロパティに登録する
+## 2. 宛先だけ書き換える
 
-Apps Script の「プロジェクトの設定 → スクリプト プロパティ」で2つ追加します。
-※メールアドレスはコードに書かず、ここに入れてください。
+貼り付けたコードの冒頭にある `RECIPIENTS` の3行に、採用担当3名のメールアドレスを入れます。
+ここ以外は書き換え不要です（合言葉・シート名・フォルダ名・メール件名は設定済み）。
 
-| プロパティ | 値 |
-| --- | --- |
-| `RECIPIENTS` | 完了メールの宛先をカンマ区切りで（3件） |
-| `TOKEN` | 任意の長い文字列（下の `ENTRY_WEBHOOK_TOKEN` と同じ値） |
-
-`TOKEN` は、デプロイURLを知った第三者からの投稿を弾くための合言葉です。
-パスワード生成ツールなどで32文字程度のランダム文字列を作ってください。
+```js
+var RECIPIENTS = [
+  'xxx@example.com',
+  'yyy@example.com',
+  'zzz@example.com',
+];
+```
 
 ## 3. Web アプリとしてデプロイする
 
@@ -52,7 +52,7 @@ Vercel のプロジェクト設定 → Environment Variables（Production / Prev
 | 変数名 | 値 |
 | --- | --- |
 | `ENTRY_WEBHOOK_URL` | 手順3で控えたデプロイ URL |
-| `ENTRY_WEBHOOK_TOKEN` | 手順2の `TOKEN` と同じ文字列 |
+| `ENTRY_WEBHOOK_TOKEN` | `a9nchclOxPyS2vzssTT6DZHhPYeT3UgkvtNTeILe`（`entry.gs` の `TOKEN` と同じ値） |
 
 登録後、再デプロイすると反映されます。
 
@@ -71,7 +71,7 @@ Vercel のプロジェクト設定 → Environment Variables（Production / Prev
 
 ## コードを変更せずに変えられるもの
 
-- 通知メールの宛先 → スクリプト プロパティ `RECIPIENTS`
+- 通知メールの宛先 → `entry.gs` 冒頭の `RECIPIENTS`
 - 送信先そのもの（別のフォーム基盤に乗り換える等）→ `ENTRY_WEBHOOK_URL`
 
 ## 名称まとめ
@@ -82,6 +82,7 @@ Vercel のプロジェクト設定 → Environment Variables（Production / Prev
 | シート | 応募一覧 |
 | Drive バックアップフォルダ | Amaden採用LP 応募バックアップ |
 | 通知メール件名 | 【応募】山田太郎さん｜Amaden採用サイト |
+| 合言葉（TOKEN） | `a9nchclOxPyS2vzssTT6DZHhPYeT3UgkvtNTeILe` |
 
 シート名・フォルダ名・件名は `docs/gas/entry.gs` の冒頭で変更できます。
 
@@ -91,8 +92,8 @@ Vercel のプロジェクト設定 → Environment Variables（Production / Prev
 | --- | --- |
 | 「送信先が未設定です」と出る | Vercel に `ENTRY_WEBHOOK_URL` が入っているか、再デプロイしたか |
 | 「送信に失敗しました」と出る | Apps Script の「実行数」ログにエラーが出ていないか |
-| シートには入るがメールが来ない | スクリプト プロパティ `RECIPIENTS` が入っているか、迷惑メールフォルダ |
-| ログに `unauthorized` | `TOKEN` と `ENTRY_WEBHOOK_TOKEN` の文字列が一致しているか |
+| シートには入るがメールが来ない | `entry.gs` の `RECIPIENTS` が入っているか、迷惑メールフォルダ |
+| ログに `unauthorized` | `entry.gs` の `TOKEN` と Vercel の `ENTRY_WEBHOOK_TOKEN` が一致しているか |
 
 送信が失敗した場合でも、応募内容は Vercel のファンクションログに残ります。
 

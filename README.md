@@ -66,8 +66,8 @@ Chromium は環境にプリインストールされたものを直接指定し�
 という流れで、スプレッドシートへの記録・担当者への完了メール・Drive へのバックアップを行います。
 
 送信先は環境変数 `ENTRY_WEBHOOK_URL` / `ENTRY_WEBHOOK_TOKEN` で差し替えられます
-（`.env.example` 参照）。宛先メールアドレスはリポジトリには置かず、
-Apps Script のスクリプト プロパティで設定します。
+（`.env.example` 参照）。Apps Script 側の設定は `docs/gas/entry.gs` 冒頭に
+まとめてあり、通知メールの宛先（`RECIPIENTS`）だけ設置時に記入します。
 
 セットアップ手順と Apps Script のコードは **[docs/entry-form-setup.md](docs/entry-form-setup.md)** に
 まとめてあります。

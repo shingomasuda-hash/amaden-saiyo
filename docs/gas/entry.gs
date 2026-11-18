@@ -6,11 +6,29 @@
  *   2. 担当者へ完了メールを送信
  *   3. Drive のバックアップフォルダに JSON を1件ずつ保存（バックアップ）
  *
- * 宛先・合言葉はコードに直接書かず、スクリプト プロパティから読む。
+ * 設定はすべてこのファイル冒頭の「設定」ブロックに集約してある。
+ * 貼り付け後に書き換えるのは RECIPIENTS の1行だけ。
  * 設置手順は docs/entry-form-setup.md を参照。
  */
 
 // ---- 設定 -------------------------------------------------------------
+
+/**
+ * 完了メールの宛先。
+ * ここだけ、採用担当3名のメールアドレスに書き換えてください。
+ * （リポジトリに個人のアドレスを残さないため空のままにしてあります）
+ */
+var RECIPIENTS = [
+  '',
+  '',
+  '',
+];
+
+/**
+ * 合言葉。デプロイURLを知った第三者からの投稿を弾くためのもの。
+ * Vercel の環境変数 ENTRY_WEBHOOK_TOKEN に同じ文字列を設定する。
+ */
+var TOKEN = 'a9nchclOxPyS2vzssTT6DZHhPYeT3UgkvtNTeILe';
 
 /** 書き込むシート名（無ければ自動で作成する） */
 var SHEET_NAME = '応募一覧';
@@ -29,32 +47,15 @@ function backupName_(received, name) {
     + '_' + (name || '氏名未記入') + '.json';
 }
 
-/**
- * スクリプト プロパティから設定値を読む。
- *   RECIPIENTS : 完了メールの宛先（カンマ区切り）
- *   TOKEN      : Vercel の ENTRY_WEBHOOK_TOKEN と同じ文字列（空なら検証しない）
- */
-function config_() {
-  var p = PropertiesService.getScriptProperties();
-  return {
-    recipients: (p.getProperty('RECIPIENTS') || '')
-      .split(',')
-      .map(function (v) { return v.trim(); })
-      .filter(function (v) { return v; }),
-    token: p.getProperty('TOKEN') || '',
-  };
-}
-
 // ---- 本体 -------------------------------------------------------------
 
 var HEADERS = ['受信日時', 'お名前', 'メールアドレス', '生年月日', '電話番号', '備考', 'User-Agent', '参照元'];
 
 function doPost(e) {
   try {
-    var cfg = config_();
     var data = JSON.parse(e.postData.contents);
 
-    if (cfg.token && data.token !== cfg.token) {
+    if (TOKEN && data.token !== TOKEN) {
       return json_({ ok: false, message: 'unauthorized' });
     }
 
@@ -72,7 +73,7 @@ function doPost(e) {
 
     appendRow_(row);
     saveBackup_(received, data);
-    sendMail_(cfg.recipients, row);
+    sendMail_(row);
 
     return json_({ ok: true });
   } catch (err) {
@@ -112,9 +113,10 @@ function saveBackup_(received, data) {
   folder.createFile(backupName_(received, data.name), JSON.stringify(data, null, 2), MimeType.PLAIN_TEXT);
 }
 
-function sendMail_(recipients, row) {
+function sendMail_(row) {
+  var recipients = RECIPIENTS.filter(function (v) { return v && v.trim(); });
   if (!recipients.length) {
-    console.warn('スクリプト プロパティ RECIPIENTS が未設定のためメールを送信しませんでした。');
+    console.warn('RECIPIENTS が未設定のためメールを送信しませんでした。');
     return;
   }
   var lines = [];
