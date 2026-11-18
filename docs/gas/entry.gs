@@ -53,6 +53,11 @@ var HEADERS = ['受信日時', 'お名前', 'メールアドレス', '生年月�
 
 function doPost(e) {
   try {
+    if (!e || !e.postData) {
+      // エディタの「実行」ボタンから直接呼ばれた場合。
+      // 動作確認は testRun() を実行してください。
+      return json_({ ok: false, message: 'このURLにPOSTしてください（動作確認は testRun）' });
+    }
     var data = JSON.parse(e.postData.contents);
 
     if (TOKEN && data.token !== TOKEN) {
@@ -81,6 +86,29 @@ function doPost(e) {
     console.error(err, e && e.postData ? e.postData.contents : '');
     return json_({ ok: false, message: String(err) });
   }
+}
+
+/**
+ * 動作確認用。エディタ上部で testRun を選んで「実行」すると、
+ * テストの1件がシート・メール・Drive に流れるので設定を確認できる。
+ * 確認後、シートの行は手で削除してください。
+ */
+function testRun() {
+  var received = new Date();
+  var row = [
+    Utilities.formatDate(received, 'Asia/Tokyo', 'yyyy/MM/dd HH:mm:ss'),
+    'テスト太郎',
+    'test@example.com',
+    '1995年6月1日',
+    '09000000000',
+    'これは動作確認用のテスト送信です。',
+    'testRun',
+    '',
+  ];
+  appendRow_(row);
+  saveBackup_(received, { name: row[1], note: row[5], test: true });
+  sendMail_(row);
+  console.log('テスト送信しました。シート・メール・Drive を確認してください。');
 }
 
 /** 動作確認用（ブラウザでデプロイ URL を開くと OK が出る） */
