@@ -13,13 +13,21 @@
 // ---- 設定 -------------------------------------------------------------
 
 /** 書き込むシート名（無ければ自動で作成する） */
-var SHEET_NAME = '応募';
+var SHEET_NAME = '応募一覧';
 
 /** バックアップ先の Drive フォルダ名（無ければ自動で作成する） */
-var BACKUP_FOLDER_NAME = 'Amaden採用LP_応募バックアップ';
+var BACKUP_FOLDER_NAME = 'Amaden採用LP 応募バックアップ';
 
-/** メール件名 */
-var SUBJECT = '【Amaden採用LP】応募がありました';
+/** メール件名（受信箱で誰からの応募か一目で分かるよう氏名を入れる） */
+function subject_(name) {
+  return '【応募】' + (name || '氏名未記入') + 'さん｜Amaden採用サイト';
+}
+
+/** バックアップファイル名 */
+function backupName_(received, name) {
+  return Utilities.formatDate(received, 'Asia/Tokyo', 'yyyyMMdd-HHmmss')
+    + '_' + (name || '氏名未記入') + '.json';
+}
 
 /**
  * スクリプト プロパティから設定値を読む。
@@ -101,8 +109,7 @@ function appendRow_(row) {
 function saveBackup_(received, data) {
   var folders = DriveApp.getFoldersByName(BACKUP_FOLDER_NAME);
   var folder = folders.hasNext() ? folders.next() : DriveApp.createFolder(BACKUP_FOLDER_NAME);
-  var name = Utilities.formatDate(received, 'Asia/Tokyo', 'yyyyMMdd-HHmmss') + '_' + (data.name || 'entry') + '.json';
-  folder.createFile(name, JSON.stringify(data, null, 2), MimeType.PLAIN_TEXT);
+  folder.createFile(backupName_(received, data.name), JSON.stringify(data, null, 2), MimeType.PLAIN_TEXT);
 }
 
 function sendMail_(recipients, row) {
@@ -115,7 +122,7 @@ function sendMail_(recipients, row) {
     lines.push(HEADERS[i] + '：' + row[i]);
   }
   var body = [
-    '採用LPの応募フォームから応募がありました。',
+    'Amaden採用サイトの応募フォームから、新しい応募がありました。',
     '',
     lines.join('\n'),
     '',
@@ -125,7 +132,7 @@ function sendMail_(recipients, row) {
 
   MailApp.sendEmail({
     to: recipients.join(','),
-    subject: SUBJECT,
+    subject: subject_(row[1]),
     body: body,
   });
 }
