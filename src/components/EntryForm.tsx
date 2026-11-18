@@ -23,6 +23,12 @@ const FIELDS = [
 
 const STEPS = ["入力", "確認", "送信"];
 
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[];
+  }
+}
+
 function validate(v: Fields) {
   const e: Partial<Record<keyof Fields, string>> = {};
   if (!v.name.trim()) e.name = "お名前を入力してください。";
@@ -39,20 +45,28 @@ function validate(v: Fields) {
 }
 
 /**
- * 送信処理は差し替え可能な形にしています。
- * 送信先 API / メール送信先はプロジェクト側で未設定のため、
- * ここでは確認画面 → 完了画面までの UI 遷移のみを行います。
- * 実際の送信先が決まったら submitEntry の中身だけを差し替えてください。
+ * 送信は同一オリジンの /api/entry に投げるだけ。
+ * スプレッドシートへの記録・担当者へのメール・バックアップは、
+ * サーバー側（src/app/api/entry/route.ts）が環境変数で指定された
+ * Google Apps Script の Web アプリに中継して行う。
+ * 送信先を変えたいときは環境変数 ENTRY_WEBHOOK_URL を差し替える。
  */
-async function submitEntry(_values: Fields): Promise<void> {
-  const endpoint = process.env.NEXT_PUBLIC_ENTRY_ENDPOINT;
-  if (!endpoint) return;
-  const res = await fetch(endpoint, {
+async function submitEntry(values: Fields): Promise<void> {
+  const res = await fetch("/api/entry", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(_values),
+    body: JSON.stringify(values),
   });
-  if (!res.ok) throw new Error("送信に失敗しました");
+  if (!res.ok) {
+    let message = "送信に失敗しました";
+    try {
+      const data = (await res.json()) as { message?: string };
+      if (data.message) message = data.message;
+    } catch {
+      /* レスポンスが JSON でない場合は既定のメッセージを使う */
+    }
+    throw new Error(message);
+  }
 }
 
 export default function EntryForm() {
@@ -80,9 +94,16 @@ export default function EntryForm() {
     setSendError("");
     try {
       await submitEntry(values);
+      // GTM で応募完了をコンバージョンとして計測できるようにする
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "entry_form_submit" });
       setStep(2);
-    } catch {
-      setSendError("送信に失敗しました。時間をおいて再度お試しください。");
+    } catch (err) {
+      setSendError(
+        err instanceof Error && err.message
+          ? err.message
+          : "送信に失敗しました。時間をおいて再度お試しください。",
+      );
     } finally {
       setSending(false);
     }

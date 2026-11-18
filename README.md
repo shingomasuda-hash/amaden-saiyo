@@ -62,7 +62,18 @@ Chromium は環境にプリインストールされたものを直接指定し�
 
 ## 応募フォームの送信処理
 
-`src/components/EntryForm.tsx` の `submitEntry()` が送信処理の差し替えポイントです。
-現状は送信先が未確定のため、環境変数 `NEXT_PUBLIC_ENTRY_ENDPOINT` が設定されている場合のみ
-その URL へ JSON を POST し、未設定の場合は送信を行わずに完了画面へ遷移します。
-（メールアドレスや外部サービスは一切設定していません）
+ブラウザ → `/api/entry`（`src/app/api/entry/route.ts`）→ Google Apps Script の Web アプリ、
+という流れで、スプレッドシートへの記録・担当者への完了メール・Drive へのバックアップを行います。
+
+送信先は環境変数 `ENTRY_WEBHOOK_URL` / `ENTRY_WEBHOOK_TOKEN` で差し替えられます
+（`.env.example` 参照）。宛先メールアドレスはリポジトリには置かず、
+Apps Script のスクリプト プロパティで設定します。
+
+セットアップ手順と Apps Script のコードは **[docs/entry-form-setup.md](docs/entry-form-setup.md)** に
+まとめてあります。
+
+## Google Tag Manager
+
+GTM ID `GTM-P6QHRW9C` を `src/app/layout.tsx` に埋め込み済みです
+（`<head>` のスニペットと `<body>` 直下の noscript）。
+応募完了時に `dataLayer` へ `entry_form_submit` イベントを送信します。
