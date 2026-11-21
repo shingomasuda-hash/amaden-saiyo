@@ -62,7 +62,7 @@ function backupName_(received, name) {
 
 // ---- 本体 -------------------------------------------------------------
 
-var HEADERS = ['受信日時', 'お名前', 'メールアドレス', '生年月日', '電話番号', '備考', 'User-Agent', '参照元'];
+var HEADERS = ['受信日時', 'ご希望', 'お名前', 'メールアドレス', '生年月日', '電話番号', '備考', 'User-Agent', '参照元'];
 
 function doPost(e) {
   try {
@@ -80,11 +80,12 @@ function doPost(e) {
     var received = data.submittedAt ? new Date(data.submittedAt) : new Date();
     var row = [
       Utilities.formatDate(received, 'Asia/Tokyo', 'yyyy/MM/dd HH:mm:ss'),
+      data.purpose || '',
       data.name || '',
       data.email || '',
       data.birthday || '',
       data.tel || '',
-      data.note || '',
+      data.note || '（未入力）',
       data.userAgent || '',
       data.referer || '',
     ];
@@ -117,6 +118,7 @@ function testRun() {
   var received = new Date();
   var row = [
     Utilities.formatDate(received, 'Asia/Tokyo', 'yyyy/MM/dd HH:mm:ss'),
+    '応募を希望',
     'テスト太郎',
     'test@example.com',
     '1995年6月1日',
@@ -126,10 +128,10 @@ function testRun() {
     '',
   ];
   appendRow_(row);
-  saveBackup_(received, { name: row[1], note: row[5], test: true });
+  saveBackup_(received, { name: row[2], note: row[6], test: true });
   sendMail_(row);
   // 応募者への自動返信を自分宛に送って内容を確認する
-  row[2] = Session.getActiveUser().getEmail() || row[2];
+  row[3] = Session.getActiveUser().getEmail() || row[3];
   sendAutoReply_(row);
   console.log('テスト送信しました。シート・メール（担当者宛と自動返信）・Drive を確認してください。');
 }
@@ -150,11 +152,17 @@ function appendRow_(row) {
     sheet = ss.insertSheet(SHEET_NAME);
   }
   if (sheet.getLastRow() === 0) {
-    sheet.appendRow(HEADERS);
-    sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
-    sheet.setFrozenRows(1);
+    writeHeader_(sheet);
+  } else if (sheet.getRange(1, 1, 1, HEADERS.length).getValues()[0].join('\t') !== HEADERS.join('\t')) {
+    // 列構成を変えたあとでも見出しが合うように書き直す
+    writeHeader_(sheet);
   }
   sheet.appendRow(row);
+}
+
+function writeHeader_(sheet) {
+  sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight('bold');
+  sheet.setFrozenRows(1);
 }
 
 /** 1件ごとに JSON を Drive へ保存しておく（スプシが壊れても復元できる） */
@@ -166,24 +174,25 @@ function saveBackup_(received, data) {
 
 /** 応募者本人への自動返信 */
 function sendAutoReply_(row) {
-  var to = row[2];
+  var to = row[3];
   if (!to) return;
 
   var recipients = RECIPIENTS.filter(function (v) { return v && v.trim(); });
   var body = [
-    row[1] + ' 様',
+    row[2] + ' 様',
     '',
     'このたびは株式会社Amadenの採用サイトよりご応募いただき、',
     '誠にありがとうございます。',
     '下記の内容で応募を受け付けいたしました。',
     '',
     '──────────────────────',
-    'お名前：' + row[1],
-    'メールアドレス：' + row[2],
-    '生年月日：' + row[3],
-    '電話番号：' + row[4],
+    'ご希望：' + row[1],
+    'お名前：' + row[2],
+    'メールアドレス：' + row[3],
+    '生年月日：' + row[4],
+    '電話番号：' + row[5],
     '備考：',
-    row[5],
+    row[6],
     '──────────────────────',
     '',
     '内容を確認のうえ、採用担当よりあらためてご連絡いたします。',
@@ -227,7 +236,7 @@ function sendMail_(row) {
 
   MailApp.sendEmail({
     to: recipients.join(','),
-    subject: subject_(row[1]),
+    subject: subject_(row[2]),
     body: body,
   });
 }

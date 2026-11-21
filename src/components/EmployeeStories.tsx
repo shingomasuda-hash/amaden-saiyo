@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ArrowUpRight } from "./Icons";
 import s from "./EmployeeStories.module.css";
 
 export default function EmployeeStories() {
@@ -95,11 +94,6 @@ export default function EmployeeStories() {
         </p>
       </article>
 
-      <a className={s.moreBtn} href="#entry">
-        <span>社員のストーリーをすべて見る</span>
-        <span className={s.divider} aria-hidden="true" />
-        <ArrowUpRight className={s.arrow} />
-      </a>
     </section>
   );
 }

@@ -3,10 +3,10 @@ import s from "./Career.module.css";
 
 const STEPS = [
   { year: "入社~3ヶ月", yearHead: "入社~", yearNum: "3", yearTail: "ヶ月", title: "会社・事業・\nお客様を知る", body: "工場やモーターの基礎に触れ、まずは全体像を理解します。" },
-  { year: "1年目", yearHead: "", yearNum: "1", yearTail: "年目", title: "先輩に同行し、\n窓口を任される", body: "相談から納品・フォローまで、案件全体を管理します。" },
+  { year: "1年目", yearHead: "", yearNum: "1", yearTail: "年目", title: "先輩に同行し、\n窓口を任される", body: "先輩と現場を回りながら、見積もりや日程調整を担当します。" },
   { year: "2~3年目", yearHead: "", yearNum: "2~3", yearTail: "年目", title: "担当顧客を持ち、\n一件を任される", body: "相談から納品・フォローまで、案件全体を管理します。" },
-  { year: "3~5年目", yearHead: "", yearNum: "3~5", yearTail: "年目", title: "難しい案件\n新規提案に挑む", spTitle: "難しい案件、新規提案に挑む", body: "組み化や体制づくりに関与し、チームを牽引する存在に。" },
-  { year: "5年目~", yearHead: "", yearNum: "5", yearTail: "年目~", title: "営業を\nつくる側へ", body: "組み化や体制づくりに関与し、チームを牽引する存在に。" },
+  { year: "3~5年目", yearHead: "", yearNum: "3~5", yearTail: "年目", title: "難しい案件\n新規提案に挑む", spTitle: "難しい案件、新規提案に挑む", body: "廃番品や特殊仕様など、難易度の高い案件にも挑戦します。" },
+  { year: "5年目~", yearHead: "", yearNum: "5", yearTail: "年目~", title: "営業を\nつくる側へ", body: "組織化や体制づくりに関与し、チームを牽引する存在に。" },
 ];
 
 const TINTS = ["#f6e9e0", "#f6d1b6", "#f7b78b", "#f99f61", "#fb7b22"];

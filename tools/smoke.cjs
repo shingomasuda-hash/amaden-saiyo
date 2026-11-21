@@ -29,18 +29,20 @@ const { chromium } = require('playwright');
   console.log('validation errors shown =', await p.locator('[class*=EntryForm_error__]').count());
 
   // --- フォーム: 入力 → 確認 → 送信 ---
+  await p.locator('[class*=EntryForm_choiceText__]').nth(1).click();
   await p.fill('input[autocomplete="name"]', '山田太郎');
   await p.fill('input[autocomplete="email"]', 'taro@sample.co.jp');
   await p.fill('input[autocomplete="bday"]', '1995年6月1日');
   await p.fill('input[autocomplete="tel"]', '09000000000');
   await p.fill('textarea', '営業職に応募します。');
-  await p.locator('[class*=EntryForm_agreeText__]').click();
+  await p.locator('[class*=EntryForm_agreeBox__]').click();
   await p.locator('[class*=EntryForm_submit__]').click();
   await p.waitForTimeout(500);
   console.log('step2 confirm rows =', await p.locator('[class*=EntryForm_confirmRow__]').count());
   await p.locator('[class*=EntryForm_submit__]').click();
   await p.waitForTimeout(500);
   console.log('step3 done shown   =', await p.locator('[class*=EntryForm_done__]').count());
+  console.log('dataLayer events   =', JSON.stringify(await p.evaluate(() => (window.dataLayer || []).map(d => d.event))));
 
   console.log(errs.length ? 'ERRORS:\n' + errs.join('\n') : 'no console/page errors');
   await b.close();

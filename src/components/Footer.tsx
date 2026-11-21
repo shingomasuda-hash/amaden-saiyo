@@ -36,16 +36,16 @@ export default function Footer() {
 
         <ul className={s.links}>
           <li>
-            <a className={s.link} href="https://www.amaden.co.jp/" target="_blank" rel="noreferrer noopener">
+            <a className={s.link} href="https://www.amaden-ss.co.jp/" target="_blank" rel="noreferrer noopener">
               企業サイトへ
               <ExternalIcon className={s.extIcon} />
             </a>
           </li>
           <li>
-            <a className={s.link} href="#entry">プライバシーポリシー</a>
+            <a className={s.link} href="/privacy">プライバシーポリシー</a>
           </li>
           <li>
-            <a className={s.link} href="#entry">個人情報保護方針</a>
+            <a className={s.link} href="/personal-information">個人情報保護方針</a>
           </li>
         </ul>
       </div>

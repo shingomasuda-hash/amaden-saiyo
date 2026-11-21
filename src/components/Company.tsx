@@ -23,7 +23,7 @@ export default function Company() {
 
       <div className={s.overlay}>
         <h2 className={s.heading}>
-          <span className={s.band}>創業約80年</span>
+          <span className={s.band}>創業約100年</span>
           <span className={s.rest}>地元に根付いた会社です</span>
         </h2>
         <p className={s.body}>

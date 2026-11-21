@@ -119,7 +119,67 @@
   line-height: 1;
 }
 
+.opt { background: #767676; }
+
+.policyLink {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .control { flex: 1; padding-left: 16px; }
+
+/* ---- ご希望（ラジオ） ---- */
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  min-height: 48px;
+  align-items: center;
+}
+
+.choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.choice input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.choiceMark {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--red);
+  border-radius: 50%;
+  background: var(--white);
+  flex: none;
+  position: relative;
+}
+
+.choice input:checked + .choiceMark::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.choice input:focus-visible + .choiceMark {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+.choiceText {
+  user-select: none;
+}
 
 .input,
 .textarea {

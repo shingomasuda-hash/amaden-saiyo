@@ -18,7 +18,10 @@ import { NextResponse } from "next/server";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+const PURPOSES = ["まずは会社見学を希望", "応募を希望"];
+
 type Payload = {
+  purpose: string;
   name: string;
   email: string;
   birthday: string;
@@ -34,11 +37,11 @@ function clean(v: unknown): string {
 }
 
 function validate(v: Payload): string | null {
+  if (!PURPOSES.includes(v.purpose)) return "ご希望が選択されていません。";
   if (!v.name) return "お名前が未入力です。";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)) return "メールアドレスの形式が正しくありません。";
   if (!v.birthday) return "生年月日が未入力です。";
   if (!/^[0-9+\-() ]{10,}$/.test(v.tel)) return "電話番号の形式が正しくありません。";
-  if (!v.note) return "備考が未入力です。";
   if (!v.agree) return "プライバシーポリシーへの同意が必要です。";
   return null;
 }
@@ -52,6 +55,7 @@ export async function POST(req: Request) {
   }
 
   const values: Payload = {
+    purpose: clean(body.purpose),
     name: clean(body.name),
     email: clean(body.email),
     birthday: clean(body.birthday),
