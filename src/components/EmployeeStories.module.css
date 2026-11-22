@@ -134,6 +134,16 @@
 }
 
 .itv1 .text { margin-top: 9.5px; }
+
+/* 赤い見出しバーの下端が本文1行目に重なるので、1行目だけバーの手前で
+   折り返させる（完成デザインでも1行目は短く、バーの左に収まっている）。
+   バー左端 505px〜本文右端 1024px を除けた幅と、重なる高さぶんの空き箱。 */
+.itv1 .text::before {
+  content: "";
+  float: right;
+  width: 523px;
+  height: 10px;
+}
 .itv2 .text { margin-top: 109.5px; }
 
 .moreBtn {
@@ -240,6 +250,9 @@
   .bars1 .bar:first-child { margin-left: 16px; }
   .bars1 .bar:last-child { margin-left: 22px; }
   .bars2 .bar { margin-left: 0; }
+
+  /* SP はバーが絶対配置ではないので回り込みは不要 */
+  .itv1 .text::before { display: none; }
 
   .text {
     margin: 22px 22px 0 !important;
