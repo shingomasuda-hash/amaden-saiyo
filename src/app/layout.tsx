@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Noto_Sans_JP, Roboto } from "next/font/google";
 import "./globals.css";
 import StickyCta from "@/components/StickyCta";
+import { Analytics } from "@vercel/analytics/next";
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -114,6 +115,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: STAGE_SCALE }} />
         <div className="stage">{children}</div>
         <StickyCta />
+        <Analytics />
       </body>
     </html>
   );
